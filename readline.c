@@ -19,7 +19,7 @@ int main(void)
 			printf("\n");
 			break;
 		}
-		printf("%s\n", line);
+		shell(line);
 	}
 	free(line);
 	return (0);

@@ -8,9 +8,16 @@
 #include <string.h>
 #include <sys/wait.h>
 
-/*** prototypes ***/
+extern const char **environ;
+
+/*** Utility Prototypes ***/
 ssize_t _getline(char **line, size_t *len, FILE *stream);
+void shell(char *line);
+
+/*** Other Prototypes ***/
 char **split_str(const char *in, const char *delim, size_t *wc);
 char **notoken_split(const char *in, const char *delim, size_t *wc);
+void exec_ls(void);
+void pid(void);
 
 #endif

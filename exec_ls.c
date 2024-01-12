@@ -1,9 +1,9 @@
 #include "shell.h"
 /**
- * main - entry point of the program
- * Return: 0 on success, 1 on error and updates errno
+ * exec_ls - executes ls -l /tmp in 5 different child processes
+ * Return: void
  */
-int main(void)
+void exec_ls(void)
 {
 	int i, status;
 	pid_t child_pid;
@@ -13,10 +13,7 @@ int main(void)
 	{
 		child_pid = fork();
 		if (child_pid == -1)
-		{
 			perror("Error: Failed to retrieve PID");
-			return (1);
-		}
 		if (child_pid == 0)
 		{
 			if (execve(argv[0], argv, NULL) == -1)
@@ -33,5 +30,4 @@ int main(void)
 			}
 		}
 	}
-	return (0);
 }

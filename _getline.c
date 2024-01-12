@@ -5,7 +5,6 @@
  * and it automatically allocates memory for the line
  *
  * @line: ** that stores the memory containing the line
- * @len: line length
  * @stream: file stream
  * Return: number of characters read\n, -1 on error
  */
@@ -14,13 +13,15 @@ ssize_t _getline(char **line, size_t *len, FILE *stream)
 	size_t limit = SIZE, i = 0;
 	int arg;
 
-	*line = (char *)malloc(limit);
-	if (*line == NULL)
+	if (*len == 0)
 	{
-		perror("malloc");
-		exit(EXIT_FAILURE);
-	}
-	while ((arg = fgetc(stream)) != EOF && arg != '\n')
+		*line = (char *)malloc(limit);
+		if (*line == NULL)
+		{
+			perror("malloc");
+			exit(EXIT_FAILURE);
+		}
+	} while ((arg = fgetc(stream)) != EOF && arg != '\n')
 	{
 		(*line)[i++] = (char)arg;
 		if (i == limit - 1)
