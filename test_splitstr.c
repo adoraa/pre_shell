@@ -16,6 +16,13 @@ int main(void)
 		printf("Word %zu: %s\n", i + 1, words[i]);
 		free(words[i]);
 	}
+	words = notoken_split(in, delim, &wc);
+	printf("\nWithout strtok\n");
+	for (i = 0; i < wc; ++i)
+	{
+		printf("Word %zu: %s\n", i + 1, words[i]);
+		free(words[i]);
+	}
 	free(words);
 	return (0);
 }
